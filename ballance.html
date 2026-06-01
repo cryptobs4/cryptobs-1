@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptobs balance</title>
+<style>
+
+.add{
+
+  text-decoration:none;
+  color:black;
+  background:#b8b8b8;
+  padding:15px 5px;
+  border:1px solid #b9b9b9;
+  border-radius:7px;
+  align-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+
+}
+
+
+  
+</style>
+</head>
+<body style="background:#aaa;">
+<!-- ----------------------------------------------------------- -->
+
+
+<!-- ------------------------------------------------- -->
+
+  
+  <div style="height:120px; width:100%; background:#b9b9b9; margin-left: 0px; margin-right:0px;
+  text-decoration:none; display:flex; align-items:center; justify-content:center;">
+
+  <table align="center">
+ 
+      <tr>
+        <td>
+  <a href="index.html" class="add" > Home </a>    </td> <td> <a href="signup.html" class="add"> Sign-Up </a>
+  </td> <td> <a href="paste.html" class="add"> Add Signal </a> </td> <td>
+    <a href="deposit.html" class="add" > Deposit </a> </td>
+      </tr>
+    
+  
+    </table>
+  </div>
+  
+<hr/>
+
+<table align="center" >
+<td>
+<p align="center"> Check your balance or request withdraw </p>
+<form action="https://formspree.io/f/xnjgjadd" method="post"  autocomplete="on">
+
+<label for="SecretCode"> what do you want? </label>
+<br />
+<label>check my balance: </label>
+<button>
+<input type="radio" name="ballance" id="check ballance"  value="check" required />
+</button>
+  <br />
+<label> Withdraw:</label>
+  <button>
+<input type="radio" name="ballance" id="gender" value="withdraw" required />
+  </button>
+  <br />
+<label> Enter Amount of money you want to withdraw: </label>
+<p>
+<input type="text" name="amount" id="money amount" placeholder="amount of money" />
+</p>
+<br/>
+<br/>
+<label for="code"> Your Password: </label>
+<br />
+<input type="text" name="accountId" id="accountId" placeholder="your Password" required /> 
+<br />
+<br>
+
+<input type="reset" value="reset" />
+<input type="submit" value="submit" />
+</form>
+</td>
+</table>
+
+
+</body>
+</html>

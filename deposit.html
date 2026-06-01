@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deposit</title>
+<style>
+
+.add{
+
+  text-decoration:none;
+  color:black;
+  background:#b8b8b8;
+  padding:15px 5px;
+  border:1px solid #b9b9b9;
+  border-radius:7px;
+  align-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  }
+  
+
+  
+</style>
+</head>
+<body style="background:#aaa;">
+<!-- ----------------------------------------------------------- -->
+
+
+<!-- ------------------------------------------------- -->
+
+  <div style="height:120px; width:100%; background:#b9b9b9; margin-left: 0px; margin-right:0px;
+  text-decoration:none; display:flex; align-items:center; justify-content:center;">
+  <table align="center">
+ 
+      <tr>
+        <td>
+  <a href="index.html" class="add"> Home </a> </td> <td>  <a href="signup.html" class="add"> Sign-Up </a>
+  </td> <td> <a href="paste.html" class="add" > Signal </a>  </td> <td> 
+    <a href="ballance.html" class="add" >Balance/Withdraw</a>  </td>
+
+      </tr>
+    
+  
+    </table>
+  </div>
+<hr/>
+
+<table align="center" >
+<tr>
+<td>
+<p align="center"> Complete Deposit</p>
+  <p>First, sign up, then deposit the amount you want to invest in one of the addresses below, 
+    and copy the transaction information (TxID).</p>
+  <p> Then paste transaction information (TxID) in the(TxID) part of the form and enter the amount and secret code of your <br />
+    account and submit it.</p>
+<label>Enter the currency you want to deposit(USDT(Tether)): </label>
+<p align="center">
+Enter: trc20 / erc20<br>
+<input type="text" name="currencyType" id="currency" list="network" onchange="showWallet()" />
+</p>
+
+<datalist id="network">
+  <option value="trc20">
+  <option value="erc20">
+</datalist>
+
+<!-- TRC20 section -->
+<div id="trc20Box" style="display:none; text-align:center;">
+  <img src="trc20.jpg" width="200">
+  <p>TRC20: </p>
+  <p> TMKVyvtS1TJbsUJXMfwVi<br>fGbmbGbSEG9yd</p>
+</div>
+
+<!-- ERC20 section -->
+<div id="erc20Box" style="display:none; text-align:center;">
+  <img src="erc20.jpg" width="200">
+  <p> ERC20: </p>
+  <p> 0xDFCE048D9A26D25Ef0d<br>f260B0038F78F9210f9b7</p>
+</div>
+
+<script>
+function showWallet() {
+  var currency = document.getElementById("currency").value;
+
+  document.getElementById("trc20Box").style.display = "none";
+  document.getElementById("erc20Box").style.display = "none";
+
+  if (currency === "trc20") {
+    document.getElementById("trc20Box").style.display = "block";
+  }
+
+  if (currency === "erc20") {
+    document.getElementById("erc20Box").style.display = "block";
+  }
+}
+</script>
+  
+
+
+
+  <br/>
+  <br />
+
+<form action="https://formspree.io/f/xnjgjadd" method="post"  autocomplete="on">
+<p align="center">
+<label for="TransactionID"> TxID: </label>
+<br>
+<input type="text" name="TransactionID" id="TxId" placeholder="yoursecretcode" required /> 
+<br /> <br />
+
+<label> Enter the amount: </label> <br>
+<input type="text" name="amount" id="money amount" placeholder="amount of money" />
+<br/>
+<br>
+<label for="code">Your Password: </label> <br>
+<input type="text" name="accountId" id="accountId" placeholder="your Password" required /> 
+<br />
+<br>
+</p>
+<p align="center">
+<input type="reset" value="reset" />
+<input type="submit" value="submit" />
+</p>
+</form>
+
+</td>
+</tr>
+</table>
+
+
+</body>
+</html>
