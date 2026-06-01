@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cryptobs</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Icons -->
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<!-- iOS PWA support -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cryptobs">
+
+<style>
+
+  .table{
+ align-content: center;
+ background: #999;
+  }
+.add{
+
+  text-decoration:none;
+  color:black;
+  background:#b8b8b8;
+  padding:15px 5px;
+  border:1px solid #b9b9b9;
+  border-radius:7px;
+  align-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  }
+
+  #installBtn {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 40px;
+    padding: 14px;
+    border: 0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #000;
+    color: #fff;
+    display: none;
+    z-index: 9999;
+  }
+</style>
+</head>
+
+<body style="background:#111; font-color:#fff;  ">
+
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+    new TradingView.widget({
+      "container_id": "tradingview_chart",
+      "symbol": "XAUUSD",
+      "interval": "1",
+      "theme": "dark",
+      "style": "1",
+      "locale": "en",
+      "autosize": true
+    });
+  </script>
+
+<hr />
+  <br>
+
+<div style="height:120px; width:100%; background:#b9b9b9; margin-left: 0px; margin-right:0px;
+  text-decoration:none; display:flex; align-items:center; justify-content:center;">
+
+ <table style="margin:0 auto;">
+  <tr>
+    <td>  <a href="signup.html" class="add" >Signup</a>  </td>
+    <td>  <a href="ballance.html" class="add" > Balance/Withdraw </a></td>
+    <td>  <a href="paste.html" class="add" > Signal </a> </td>
+    <td>  <a href="deposit.html" class="add" >Deposit</a>  </td>
+  </tr>
+</table>  
+</div>
+<div style="color:#fff; justify-content:center; display:flex; align-items:center;">
+<h3> 
+<p>Rules and Guides: </p>
+</h> 
+<br>
+<p style="align:left;  "> 
+<ol>
+<li>Every day you will get 1 signal. You have to paste it in <b> Signal</b> tap of the app or website within 1 minute.<br>
+If you paste that signal within 1minute, that signal will brings you 1% profit for that day; otherwise, you wouldn't get profit that day. </li>
+<li>The withdraw commission is 20% </li>
+<li>Don't share your password or secret code with anyone</li>
+
+</ol>
+
+
+</p>
+</div>
+  
+
+<button id="installBtn">Install App</button>
+
+<script>
+let deferredPrompt = null;
+const installBtn = document.getElementById("installBtn");
+
+// Detect iOS
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+// Detect standalone mode (already installed)
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+// Show install button for iOS (manual install)
+if (isIOS && !isStandalone) {
+  installBtn.style.display = "block";
+  installBtn.textContent = "Add to Home Screen";
+}
+
+// Android / Chrome install prompt
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  if (!isStandalone) {
+    installBtn.style.display = "block";
+    installBtn.textContent = "Install Cryptobs";
+  }
+});
+
+// Button click handler
+installBtn.addEventListener("click", async () => {
+
+  // iOS manual instructions
+  if (isIOS) {
+    alert(
+      "To install Cryptobs:\n\n" +
+      "1. Tap the Share button\n" +
+      "2. Scroll down\n" +
+      "3. Tap 'Add to Home Screen'\n" +
+      "4. Tap Add"
+    );
+    return;
+  }
+
+  // Android / Chrome install
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const choice = await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+    installBtn.style.display = "none";
+  }
+});
+
+// Hide button if already installed
+window.addEventListener("appinstalled", () => {
+  installBtn.style.display = "none";
+});
+
+// Register service worker
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js")
+    .then(() => console.log("Service Worker registered"))
+    .catch(err => console.error("SW error:", err));
+}
+</script>
+
+</body>
+</html>
